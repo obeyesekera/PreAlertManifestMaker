@@ -364,7 +364,6 @@ namespace PreAlertManifestMaker
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             Margin = new System.Windows.Forms.Padding(2);
             MaximizeBox = false;
-            MinimizeBox = false;
             Name = "frmMain";
             Text = "Pre Alert Manifest Maker v1";
             WindowState = System.Windows.Forms.FormWindowState.Maximized;
