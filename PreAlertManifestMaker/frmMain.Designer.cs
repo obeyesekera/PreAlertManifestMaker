@@ -62,12 +62,14 @@ namespace PreAlertManifestMaker
             // 
             // dataGridView1
             // 
+            dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new System.Drawing.Point(11, 183);
+            dataGridView1.Location = new System.Drawing.Point(8, 110);
+            dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new System.Drawing.Size(1296, 603);
+            dataGridView1.Size = new System.Drawing.Size(907, 362);
             dataGridView1.TabIndex = 0;
             dataGridView1.RowsAdded += dataGridView1_RowsAdded;
             dataGridView1.RowsRemoved += dataGridView1_RowsRemoved;
@@ -76,9 +78,11 @@ namespace PreAlertManifestMaker
             // 
             // btnGenerate
             // 
-            btnGenerate.Location = new System.Drawing.Point(1331, 383);
+            btnGenerate.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            btnGenerate.Location = new System.Drawing.Point(932, 230);
+            btnGenerate.Margin = new System.Windows.Forms.Padding(2);
             btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new System.Drawing.Size(159, 73);
+            btnGenerate.Size = new System.Drawing.Size(111, 44);
             btnGenerate.TabIndex = 1;
             btnGenerate.Text = "Generate";
             btnGenerate.UseVisualStyleBackColor = true;
@@ -87,42 +91,48 @@ namespace PreAlertManifestMaker
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new System.Drawing.Point(266, 72);
+            lblName.Location = new System.Drawing.Point(186, 43);
+            lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             lblName.Name = "lblName";
-            lblName.Size = new System.Drawing.Size(56, 25);
+            lblName.Size = new System.Drawing.Size(37, 15);
             lblName.TabIndex = 3;
             lblName.Text = "Flight";
             // 
             // txtFlight
             // 
             txtFlight.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            txtFlight.Location = new System.Drawing.Point(343, 70);
+            txtFlight.Location = new System.Drawing.Point(240, 42);
+            txtFlight.Margin = new System.Windows.Forms.Padding(2);
             txtFlight.Name = "txtFlight";
-            txtFlight.Size = new System.Drawing.Size(150, 31);
+            txtFlight.Size = new System.Drawing.Size(106, 23);
             txtFlight.TabIndex = 4;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(266, 27);
+            label2.Location = new System.Drawing.Point(186, 16);
+            label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(66, 25);
+            label2.Size = new System.Drawing.Size(43, 15);
             label2.TabIndex = 5;
             label2.Text = "MAWB";
             // 
             // txtMAWB
             // 
-            txtMAWB.Location = new System.Drawing.Point(343, 25);
+            txtMAWB.Location = new System.Drawing.Point(240, 15);
+            txtMAWB.Margin = new System.Windows.Forms.Padding(2);
             txtMAWB.Name = "txtMAWB";
-            txtMAWB.Size = new System.Drawing.Size(150, 31);
+            txtMAWB.Size = new System.Drawing.Size(106, 23);
             txtMAWB.TabIndex = 6;
             txtMAWB.KeyPress += txtPaxCount_KeyPress;
             // 
             // btnSave
             // 
-            btnSave.Location = new System.Drawing.Point(1331, 505);
+            btnSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            btnSave.Location = new System.Drawing.Point(932, 303);
+            btnSave.Margin = new System.Windows.Forms.Padding(2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new System.Drawing.Size(159, 73);
+            btnSave.Size = new System.Drawing.Size(111, 44);
             btnSave.TabIndex = 7;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -131,53 +141,59 @@ namespace PreAlertManifestMaker
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(500, 23);
+            label1.Location = new System.Drawing.Point(350, 14);
+            label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(61, 25);
+            label1.Size = new System.Drawing.Size(40, 15);
             label1.TabIndex = 10;
             label1.Text = "Origin";
             // 
             // lblRows
             // 
             lblRows.AutoSize = true;
-            lblRows.Location = new System.Drawing.Point(21, 147);
+            lblRows.Location = new System.Drawing.Point(15, 88);
+            lblRows.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             lblRows.Name = "lblRows";
-            lblRows.Size = new System.Drawing.Size(54, 25);
+            lblRows.Size = new System.Drawing.Size(35, 15);
             lblRows.TabIndex = 12;
             lblRows.Text = "Rows";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(500, 72);
+            label3.Location = new System.Drawing.Point(350, 43);
+            label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(102, 25);
+            label3.Size = new System.Drawing.Size(67, 15);
             label3.TabIndex = 13;
             label3.Text = "Destination";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(769, 72);
+            label4.Location = new System.Drawing.Point(538, 43);
+            label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(62, 25);
+            label4.Size = new System.Drawing.Size(41, 15);
             label4.TabIndex = 17;
             label4.Text = "Arrival";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(769, 23);
+            label5.Location = new System.Drawing.Point(538, 14);
+            label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(91, 25);
+            label5.Size = new System.Drawing.Size(59, 15);
             label5.TabIndex = 15;
             label5.Text = "Departure";
             // 
             // txtParcels
             // 
-            txtParcels.Location = new System.Drawing.Point(1270, 20);
+            txtParcels.Location = new System.Drawing.Point(889, 12);
+            txtParcels.Margin = new System.Windows.Forms.Padding(2);
             txtParcels.Name = "txtParcels";
-            txtParcels.Size = new System.Drawing.Size(74, 31);
+            txtParcels.Size = new System.Drawing.Size(53, 23);
             txtParcels.TabIndex = 19;
             txtParcels.TextChanged += txtParcels_TextChanged;
             txtParcels.KeyPress += txtParcels_KeyPress;
@@ -185,26 +201,29 @@ namespace PreAlertManifestMaker
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(1183, 25);
+            label6.Location = new System.Drawing.Point(828, 15);
+            label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(65, 25);
+            label6.Size = new System.Drawing.Size(44, 15);
             label6.TabIndex = 20;
             label6.Text = "Parcels";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(1183, 77);
+            label7.Location = new System.Drawing.Point(828, 46);
+            label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(86, 25);
+            label7.Size = new System.Drawing.Size(58, 15);
             label7.TabIndex = 22;
             label7.Text = "Items(PP)";
             // 
             // txtItemsPP
             // 
-            txtItemsPP.Location = new System.Drawing.Point(1270, 72);
+            txtItemsPP.Location = new System.Drawing.Point(889, 43);
+            txtItemsPP.Margin = new System.Windows.Forms.Padding(2);
             txtItemsPP.Name = "txtItemsPP";
-            txtItemsPP.Size = new System.Drawing.Size(74, 31);
+            txtItemsPP.Size = new System.Drawing.Size(53, 23);
             txtItemsPP.TabIndex = 21;
             txtItemsPP.TextChanged += txtItemsPP_TextChanged;
             txtItemsPP.KeyPress += txtItemsPP_KeyPress;
@@ -212,98 +231,98 @@ namespace PreAlertManifestMaker
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new System.Drawing.Point(14, 18);
+            label8.Location = new System.Drawing.Point(10, 11);
+            label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(56, 25);
+            label8.Size = new System.Drawing.Size(38, 15);
             label8.TabIndex = 23;
             label8.Text = "Client";
             // 
             // cmbClient
             // 
             cmbClient.FormattingEnabled = true;
-            cmbClient.Location = new System.Drawing.Point(91, 17);
-            cmbClient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbClient.Location = new System.Drawing.Point(64, 10);
             cmbClient.Name = "cmbClient";
-            cmbClient.Size = new System.Drawing.Size(150, 33);
+            cmbClient.Size = new System.Drawing.Size(106, 23);
             cmbClient.TabIndex = 25;
             cmbClient.SelectedIndexChanged += cmbClient_SelectedIndexChanged;
             // 
             // cmbDestination
             // 
             cmbDestination.FormattingEnabled = true;
-            cmbDestination.Location = new System.Drawing.Point(600, 67);
-            cmbDestination.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbDestination.Location = new System.Drawing.Point(420, 40);
             cmbDestination.Name = "cmbDestination";
-            cmbDestination.Size = new System.Drawing.Size(150, 33);
+            cmbDestination.Size = new System.Drawing.Size(106, 23);
             cmbDestination.TabIndex = 26;
             // 
             // cmbAirline
             // 
             cmbAirline.FormattingEnabled = true;
-            cmbAirline.Location = new System.Drawing.Point(91, 67);
-            cmbAirline.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbAirline.Location = new System.Drawing.Point(64, 40);
             cmbAirline.Name = "cmbAirline";
-            cmbAirline.Size = new System.Drawing.Size(150, 33);
+            cmbAirline.Size = new System.Drawing.Size(106, 23);
             cmbAirline.TabIndex = 28;
             cmbAirline.SelectedIndexChanged += cmbAirline_SelectedIndexChanged;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new System.Drawing.Point(14, 68);
+            label9.Location = new System.Drawing.Point(10, 41);
+            label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(61, 25);
+            label9.Size = new System.Drawing.Size(41, 15);
             label9.TabIndex = 27;
             label9.Text = "Airline";
             // 
             // cmbOrigin
             // 
             cmbOrigin.FormattingEnabled = true;
-            cmbOrigin.Location = new System.Drawing.Point(600, 20);
-            cmbOrigin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbOrigin.Location = new System.Drawing.Point(420, 12);
             cmbOrigin.Name = "cmbOrigin";
-            cmbOrigin.Size = new System.Drawing.Size(150, 33);
+            cmbOrigin.Size = new System.Drawing.Size(106, 23);
             cmbOrigin.TabIndex = 29;
             // 
             // dtpDeparture
             // 
             dtpDeparture.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            dtpDeparture.Location = new System.Drawing.Point(860, 18);
-            dtpDeparture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dtpDeparture.Location = new System.Drawing.Point(602, 11);
             dtpDeparture.Name = "dtpDeparture";
-            dtpDeparture.Size = new System.Drawing.Size(284, 31);
+            dtpDeparture.Size = new System.Drawing.Size(200, 23);
             dtpDeparture.TabIndex = 30;
             // 
             // dtpArrival
             // 
             dtpArrival.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            dtpArrival.Location = new System.Drawing.Point(860, 63);
-            dtpArrival.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dtpArrival.Location = new System.Drawing.Point(602, 38);
             dtpArrival.Name = "dtpArrival";
-            dtpArrival.Size = new System.Drawing.Size(284, 31);
+            dtpArrival.Size = new System.Drawing.Size(200, 23);
             dtpArrival.TabIndex = 31;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new System.Drawing.Point(1401, 27);
+            label10.Location = new System.Drawing.Point(981, 16);
+            label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(52, 25);
+            label10.Size = new System.Drawing.Size(33, 15);
             label10.TabIndex = 33;
             label10.Text = "SKUs";
             // 
             // txtSKUs
             // 
-            txtSKUs.Location = new System.Drawing.Point(1401, 70);
+            txtSKUs.Location = new System.Drawing.Point(981, 42);
+            txtSKUs.Margin = new System.Windows.Forms.Padding(2);
             txtSKUs.Name = "txtSKUs";
-            txtSKUs.Size = new System.Drawing.Size(74, 31);
+            txtSKUs.Size = new System.Drawing.Size(53, 23);
             txtSKUs.TabIndex = 32;
             // 
             // btnClear
             // 
-            btnClear.Location = new System.Drawing.Point(1331, 632);
+            btnClear.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            btnClear.Location = new System.Drawing.Point(932, 379);
+            btnClear.Margin = new System.Windows.Forms.Padding(2);
             btnClear.Name = "btnClear";
-            btnClear.Size = new System.Drawing.Size(159, 73);
+            btnClear.Size = new System.Drawing.Size(111, 44);
             btnClear.TabIndex = 34;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -311,9 +330,9 @@ namespace PreAlertManifestMaker
             // 
             // frmMain
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1530, 798);
+            ClientSize = new System.Drawing.Size(1071, 479);
             Controls.Add(btnClear);
             Controls.Add(label10);
             Controls.Add(txtSKUs);
@@ -343,10 +362,12 @@ namespace PreAlertManifestMaker
             Controls.Add(dataGridView1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmMain";
             Text = "Pre Alert Manifest Maker v1";
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
             FormClosing += frmMain_FormClosing;
             Load += frmMain_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
