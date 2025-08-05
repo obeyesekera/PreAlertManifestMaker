@@ -240,13 +240,26 @@ namespace PreAlertManifestMaker
                 {
                     worksheetRow += 1;
 
-                    for (int i = 1; i <= dgTable.Columns.Count; i++)
-                    {
-                        //manifestWorksheet.Cells[worksheetRow, i] = "'" + datarow[i - 1].ToString();
+                    //for (int i = 1; i <= dgTable.Columns.Count; i++)
+                    //{
+                    //    manifestWorksheet.Cells[worksheetRow, i] = datarow[i - 1].ToString();
+                    //}
 
-                        manifestWorksheet.Cells[worksheetRow, i] = datarow[i - 1].ToString();
 
-                    }
+                    // Get data as an object array
+                    object[] values = datarow.ItemArray;
+
+                    // Get the number of columns
+                    int colCount = values.Length;
+
+                    // Define the target range for the row
+                    ExcelApp.Range targetRange = manifestWorksheet.Range[
+                        manifestWorksheet.Cells[worksheetRow, 1],
+                        manifestWorksheet.Cells[worksheetRow, colCount]
+                    ];
+
+                    // Assign the array to the range
+                    targetRange.Value2 = values;
 
                 }
 
@@ -263,6 +276,9 @@ namespace PreAlertManifestMaker
                 Thread.Sleep(5000);
             }
         }
+
+
+        
 
         private void updatePaxCount()
         {

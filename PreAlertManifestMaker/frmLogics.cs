@@ -74,7 +74,7 @@ namespace PreAlertManifestMaker
             if (nSKUs>0) 
             {
                 btnGenerate.Enabled = true;
-                btnGenerate.Focus();
+                //btnGenerate.Focus();
             }
             else
             {
