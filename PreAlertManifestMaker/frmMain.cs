@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -38,6 +39,10 @@ namespace PreAlertManifestMaker
             dgTable = getManifestColums();
 
             dataGridView1.DataSource = dgTable;
+
+            //set version info
+            Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            this.Text = "Pre Alert Manifest Maker " + version;
         }
 
 

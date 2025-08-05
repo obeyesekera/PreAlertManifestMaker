@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -17,9 +18,9 @@ namespace PreAlertManifestMaker
 
         string consignmentNo = "";
         string SKUNo = "";
-        private DataTable getManifestColums()
+        private System.Data.DataTable getManifestColums()
         {
-            DataTable table = new System.Data.DataTable();
+            System.Data.DataTable table = new System.Data.DataTable();
 
             table.Columns.Add("Client Name *", typeof(string));
             table.Columns.Add("MAWB No. *", typeof(string));
@@ -215,10 +216,16 @@ namespace PreAlertManifestMaker
                 manifestExcel.Visible = false;
                 manifestExcel.DisplayAlerts = false;
 
+                // For example, to set column A to Text format:
+                
+
                 ExcelApp.Worksheet manifestWorksheet = (ExcelApp.Worksheet)manifestWorkbook.ActiveSheet;
                 manifestWorksheet.Name = "ePAM Data";
                 //manifestWorksheet.Cells[1, 1] = txtFlight.Text;
                 manifestWorksheet.Cells.Font.Size = 11;
+
+                ExcelApp.Range columnHS = manifestWorksheet.Columns["AJ"];
+                columnHS.NumberFormat = "@";
 
                 for (int i = 1; i <= dgTable.Columns.Count; i++)
                 {
@@ -236,7 +243,9 @@ namespace PreAlertManifestMaker
                     for (int i = 1; i <= dgTable.Columns.Count; i++)
                     {
                         //manifestWorksheet.Cells[worksheetRow, i] = "'" + datarow[i - 1].ToString();
+
                         manifestWorksheet.Cells[worksheetRow, i] = datarow[i - 1].ToString();
+
                     }
 
                 }

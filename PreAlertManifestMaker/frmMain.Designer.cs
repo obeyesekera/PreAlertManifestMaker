@@ -365,7 +365,7 @@ namespace PreAlertManifestMaker
             Margin = new System.Windows.Forms.Padding(2);
             MaximizeBox = false;
             Name = "frmMain";
-            Text = "Pre Alert Manifest Maker v1";
+            Text = "Pre Alert Manifest Maker";
             WindowState = System.Windows.Forms.FormWindowState.Maximized;
             FormClosing += frmMain_FormClosing;
             Load += frmMain_Load;
