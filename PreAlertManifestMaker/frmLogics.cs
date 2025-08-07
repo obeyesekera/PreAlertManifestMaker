@@ -29,9 +29,7 @@ namespace PreAlertManifestMaker
             dtpArrival.Value = DateTime.Now.AddHours(Convert.ToDouble(ConfigurationManager.AppSettings["arriveOffset"]));
             txtParcels.Text = ConfigurationManager.AppSettings["parcels"];
             txtItemsPP.Text = ConfigurationManager.AppSettings["itemsPP"];
-
-            
-
+            txtFiles.Text = ConfigurationManager.AppSettings["files"];
 
         }
 

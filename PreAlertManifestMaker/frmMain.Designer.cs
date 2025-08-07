@@ -57,6 +57,8 @@ namespace PreAlertManifestMaker
             label10 = new System.Windows.Forms.Label();
             txtSKUs = new System.Windows.Forms.TextBox();
             btnClear = new System.Windows.Forms.Button();
+            label11 = new System.Windows.Forms.Label();
+            txtFiles = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -69,7 +71,7 @@ namespace PreAlertManifestMaker
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new System.Drawing.Size(907, 362);
+            dataGridView1.Size = new System.Drawing.Size(946, 362);
             dataGridView1.TabIndex = 0;
             dataGridView1.RowsAdded += dataGridView1_RowsAdded;
             dataGridView1.RowsRemoved += dataGridView1_RowsRemoved;
@@ -79,7 +81,7 @@ namespace PreAlertManifestMaker
             // btnGenerate
             // 
             btnGenerate.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            btnGenerate.Location = new System.Drawing.Point(932, 230);
+            btnGenerate.Location = new System.Drawing.Point(971, 230);
             btnGenerate.Margin = new System.Windows.Forms.Padding(2);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new System.Drawing.Size(111, 44);
@@ -129,7 +131,7 @@ namespace PreAlertManifestMaker
             // btnSave
             // 
             btnSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            btnSave.Location = new System.Drawing.Point(932, 303);
+            btnSave.Location = new System.Drawing.Point(971, 303);
             btnSave.Margin = new System.Windows.Forms.Padding(2);
             btnSave.Name = "btnSave";
             btnSave.Size = new System.Drawing.Size(111, 44);
@@ -310,7 +312,7 @@ namespace PreAlertManifestMaker
             // 
             // txtSKUs
             // 
-            txtSKUs.Location = new System.Drawing.Point(981, 42);
+            txtSKUs.Location = new System.Drawing.Point(1029, 11);
             txtSKUs.Margin = new System.Windows.Forms.Padding(2);
             txtSKUs.Name = "txtSKUs";
             txtSKUs.Size = new System.Drawing.Size(53, 23);
@@ -319,7 +321,7 @@ namespace PreAlertManifestMaker
             // btnClear
             // 
             btnClear.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            btnClear.Location = new System.Drawing.Point(932, 379);
+            btnClear.Location = new System.Drawing.Point(971, 379);
             btnClear.Margin = new System.Windows.Forms.Padding(2);
             btnClear.Name = "btnClear";
             btnClear.Size = new System.Drawing.Size(111, 44);
@@ -328,11 +330,33 @@ namespace PreAlertManifestMaker
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new System.Drawing.Point(981, 46);
+            label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label11.Name = "label11";
+            label11.Size = new System.Drawing.Size(30, 15);
+            label11.TabIndex = 36;
+            label11.Text = "Files";
+            // 
+            // txtFiles
+            // 
+            txtFiles.Location = new System.Drawing.Point(1029, 43);
+            txtFiles.Margin = new System.Windows.Forms.Padding(2);
+            txtFiles.Name = "txtFiles";
+            txtFiles.Size = new System.Drawing.Size(53, 23);
+            txtFiles.TabIndex = 35;
+            txtFiles.TextChanged += txtFiles_TextChanged;
+            txtFiles.KeyPress += txtFiles_KeyPress;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1071, 479);
+            ClientSize = new System.Drawing.Size(1110, 479);
+            Controls.Add(label11);
+            Controls.Add(txtFiles);
             Controls.Add(btnClear);
             Controls.Add(label10);
             Controls.Add(txtSKUs);
@@ -403,6 +427,8 @@ namespace PreAlertManifestMaker
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtSKUs;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtFiles;
     }
 }
 

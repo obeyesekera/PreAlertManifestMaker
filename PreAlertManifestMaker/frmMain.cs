@@ -28,6 +28,8 @@ namespace PreAlertManifestMaker
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            txtFiles.Enabled = false;
+
             initializeControls();
 
             loadConfigurations();
@@ -193,6 +195,16 @@ namespace PreAlertManifestMaker
         private void btnClear_Click(object sender, EventArgs e)
         {
             clearForm();
+        }
+
+        private void txtFiles_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFiles_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validateNumbers(e);
         }
     }
 }

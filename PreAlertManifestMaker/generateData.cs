@@ -53,7 +53,7 @@ namespace PreAlertManifestMaker
             string[] nTotals = {
                 randomNumber(10, 99).ToString(), //TotFreight,
                 randomNumber(10, 99).ToString(), //TotInsurance,
-                randomNumber(0, 99).ToString() //TotGrossWeight
+                randomNumber(10, 99).ToString() //TotGrossWeight
             };
 
             return nTotals;
