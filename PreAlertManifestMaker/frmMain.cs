@@ -68,6 +68,9 @@ namespace PreAlertManifestMaker
 
             fileName += txtMAWB.Text + "_";
             fileName += DateTime.Now.ToString("yyyyMMddHHmmss");
+            fileName += txtParcels.Text.Length > 0 ? ("_" + txtParcels.Text + "P") : "";
+            fileName += txtSKUs.Text.Length > 0 ? ("_" + txtSKUs.Text + "SKU") : "";
+
 
             saveManifest(fileName);
             MessageBox.Show(fileName + " Saved !");

@@ -14,8 +14,10 @@ namespace PreAlertManifestMaker
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(airlineCode);
             stringBuilder.Append("-");
-            stringBuilder.Append(randomNumber(1000000, 9999999)); //7 dgit serial
-            stringBuilder.Append("9"); //1 dgit chk digit
+            int serial = randomNumber(1000000, 9999999);
+            stringBuilder.Append(serial); //7 dgit serial
+            int chkDigit = serial % 7;
+            stringBuilder.Append(chkDigit); //1 dgit chk digit
             return stringBuilder.ToString();
         }
 
