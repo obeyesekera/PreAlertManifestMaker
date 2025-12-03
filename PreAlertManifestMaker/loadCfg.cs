@@ -20,6 +20,8 @@ namespace PreAlertManifestMaker
         string[,] row2List;
 
 
+        
+
         private void fillClientComboBox(string cfgFile)
         {
             clientList = readComboCfg(cfgFile, 2);

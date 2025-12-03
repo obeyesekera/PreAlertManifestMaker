@@ -12,6 +12,11 @@ namespace PreAlertManifestMaker
     {
         private bool validatefields = false;
 
+        private int drWeight = 0;
+        private int drValue = 0;
+        int parcelCount = 0;
+        int itemsPP = 0;
+
         private void setValidateTrue() 
         {
             validatefields = true;
@@ -30,10 +35,12 @@ namespace PreAlertManifestMaker
             txtParcels.Text = ConfigurationManager.AppSettings["parcels"];
             txtItemsPP.Text = ConfigurationManager.AppSettings["itemsPP"];
             txtFiles.Text = ConfigurationManager.AppSettings["files"];
+            drWeight = int.Parse(ConfigurationManager.AppSettings["drWeight"]);
+            drValue = int.Parse(ConfigurationManager.AppSettings["drValue"]);
 
         }
 
-        private void loadConfigurations() 
+        private void loadConfigurations()
         {
             fillClientComboBox("client.cfg");
             fillAirlineComboBox("airline.cfg");
@@ -64,9 +71,9 @@ namespace PreAlertManifestMaker
 
             if (validatefields && proLenght>0)
             {
-                int parcels = Convert.ToInt32(txtParcels.Text);
-                int itemsPP = Convert.ToInt32(txtItemsPP.Text);
-                nSKUs = parcels * itemsPP;
+                parcelCount = Convert.ToInt32(txtParcels.Text);
+                itemsPP = Convert.ToInt32(txtItemsPP.Text);
+                nSKUs = parcelCount * itemsPP;
             }
 
             if (nSKUs>0) 
@@ -95,12 +102,13 @@ namespace PreAlertManifestMaker
             dtpDeparture.Enabled = false;
             txtParcels.ReadOnly = true;
             txtItemsPP.ReadOnly = true;
+            cbDR.Enabled = false;
 
             //int paxCount = Int32.Parse(txtMWAB.Text);
             //addRows(paxCount);
 
-            int parcelCount = Int32.Parse(txtParcels.Text);
-            int itemsPP = Int32.Parse(txtItemsPP.Text);
+            parcelCount = Int32.Parse(txtParcels.Text);
+            itemsPP = Int32.Parse(txtItemsPP.Text);
             createManifest(parcelCount,itemsPP);
             
             
@@ -122,6 +130,7 @@ namespace PreAlertManifestMaker
             dtpDeparture.Enabled = true;
             txtParcels.ReadOnly = false;
             txtItemsPP.ReadOnly = false;
+            cbDR.Enabled = true;
             dgTable.Rows.Clear();
             dataGridView1.ReadOnly = true;
             btnSave.Enabled = false;

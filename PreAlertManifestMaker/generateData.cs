@@ -52,11 +52,24 @@ namespace PreAlertManifestMaker
 
         private string[] rndParcelTotals() 
         {
-            string[] nTotals = {
-                randomNumber(10, 99).ToString(), //TotFreight,
-                randomNumber(10, 99).ToString(), //TotInsurance,
-                randomNumber(10, 99).ToString() //TotGrossWeight
-            };
+            string[] nTotals;
+
+            if (cbDR.Checked)
+            {
+                nTotals = new string[]{
+                    randomNumber(10, 25).ToString(), //TotFreight,
+                    randomNumber(10, 25).ToString(), //TotInsurance,
+                    randomNumber(10, drWeight).ToString() //TotGrossWeight
+                };
+            }
+            else
+            {
+                nTotals = new string[]{
+                    randomNumber(10, 99).ToString(), //TotFreight,
+                    randomNumber(10, 99).ToString(), //TotInsurance,
+                    randomNumber(10, 99).ToString() //TotGrossWeight
+                };
+            }
 
             return nTotals;
         }
@@ -118,7 +131,7 @@ namespace PreAlertManifestMaker
         private string rndPostalCode()
         {
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append(randomNumber(100000, 999999));
+            stringBuilder.Append(randomNumber(10000, 99999));
             return stringBuilder.ToString();
         }
 
@@ -204,13 +217,40 @@ namespace PreAlertManifestMaker
         private string rndQuantity()
         {
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append(randomNumber(10, 99));
+            if (cbDR.Checked) 
+            {
+                stringBuilder.Append(randomNumber(1, 5));
+            }
+            else
+            {
+                stringBuilder.Append(randomNumber(10, 99));
+            }
+            
             return stringBuilder.ToString();
         }
-        private string rndUnitValue()
+        private string rndUnitValue(string quantity)
         {
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append(randomNumber(100, 999));
+            if (cbDR.Checked)
+            {
+                int totParcelValue = drValue - 50;
+                int maxItemTotal = totParcelValue / itemsPP;
+                int maxItemValue = maxItemTotal / Int32.Parse(quantity);
+                if (maxItemValue <= 1)
+                {
+                    stringBuilder.Append(1);
+                }
+                else 
+                {
+                    stringBuilder.Append(randomNumber(1, maxItemValue));
+                }
+                
+            }
+            else
+            {
+                stringBuilder.Append(randomNumber(100, 999));
+            }
+            
             return stringBuilder.ToString();
         }
 
@@ -235,28 +275,7 @@ namespace PreAlertManifestMaker
             return Name;
         }
 
-        private string rndGender()
-        {
-            string[] genders = { "M", "F" };
-
-            int rNo = randomNumber(0, 1000);
-            int index = rNo % 2;
-            return genders[index];
-        }
-
-        private string rndDOB()
-        {
-            DateTime start = new DateTime(1945, 1, 1);
-            int range = (DateTime.Today - start).Days;
-            return start.AddDays(gen.Next(range)).ToString("dd/MM/yyyy");
-        }
-
-        private string rndExpiryDate()
-        {
-            DateTime start = DateTime.Today;
-            int range = 100;
-            return start.AddDays(gen.Next(range)).ToString("dd/MM/yyyy");
-        }
+             
 
         private Random gen = new Random();
 
@@ -268,37 +287,12 @@ namespace PreAlertManifestMaker
         private readonly Random _random = new Random();
 
 
-        private string rndTravelDoc(string prefix)
-        {
-            var tdBuilder = new StringBuilder();
-            tdBuilder.Append(prefix);
-            tdBuilder.Append(randomNumber(10000, 99999));
+        
 
-            return tdBuilder.ToString();
-        }
-
-        private DataRow rndCountry()
-        {
-
-            Random r = new Random();
-            int rInt = r.Next(1, dtCountry.Rows.Count);
-
-            DataRow countryRow = dtCountry.Rows[rInt];
-
-            return countryRow;
-        }
+        
 
 
 
-        private DataRow rndDocType()
-        {
-
-            Random r = new Random();
-            int rInt = r.Next(1, dtDocType.Rows.Count);
-
-            DataRow docTypeRow = dtDocType.Rows[rInt];
-
-            return docTypeRow;
-        }
+        
     }
 }

@@ -59,6 +59,7 @@ namespace PreAlertManifestMaker
             btnClear = new System.Windows.Forms.Button();
             label11 = new System.Windows.Forms.Label();
             txtFiles = new System.Windows.Forms.TextBox();
+            cbDR = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -350,11 +351,22 @@ namespace PreAlertManifestMaker
             txtFiles.TextChanged += txtFiles_TextChanged;
             txtFiles.KeyPress += txtFiles_KeyPress;
             // 
+            // cbDR
+            // 
+            cbDR.AutoSize = true;
+            cbDR.Location = new System.Drawing.Point(889, 71);
+            cbDR.Name = "cbDR";
+            cbDR.Size = new System.Drawing.Size(69, 19);
+            cbDR.TabIndex = 37;
+            cbDR.Text = "DR Only";
+            cbDR.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1110, 479);
+            Controls.Add(cbDR);
             Controls.Add(label11);
             Controls.Add(txtFiles);
             Controls.Add(btnClear);
@@ -429,6 +441,7 @@ namespace PreAlertManifestMaker
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtFiles;
+        private System.Windows.Forms.CheckBox cbDR;
     }
 }
 

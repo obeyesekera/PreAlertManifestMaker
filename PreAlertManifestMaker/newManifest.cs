@@ -105,8 +105,8 @@ namespace PreAlertManifestMaker
             string[] nParcel = {
                 parcelNo,
                 parcelNoSeq.ToString(), //BagID(),
-                nMAWB[3], //Origin
-                nMAWB[4], //Destination
+                nMAWB[3].Substring(0,2), //Origin
+                nMAWB[4].Substring(0,2), //Destination
                 rndCurrency(),
                 nTotals[0], //TotFreight,
                 nTotals[1], //TotInsurance,
@@ -179,12 +179,15 @@ namespace PreAlertManifestMaker
 
             string[] nHS = rndHSCode();
 
+            string quantity = rndQuantity();
+            string unitValue = rndUnitValue(quantity);
+
             string[] nItem = {
                 consignmentNo, //"Consignment Note *", 
                 SKUNo, //"Goods SKU *",
                 nHS[1], //"Description of Goods *",
-                rndQuantity(), //"Quantity *",
-                rndUnitValue(), //"Item Value Per Unit *",
+                quantity, //"Quantity *",
+                unitValue, //"Item Value Per Unit *",
                 nHS[0] //"HS Code *"
             };
 
