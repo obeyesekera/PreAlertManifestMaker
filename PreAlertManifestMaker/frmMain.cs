@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using FormK2;
+using FormEpam;
 
 
 namespace PreAlertManifestMaker
@@ -14,6 +16,7 @@ namespace PreAlertManifestMaker
     {
         DataTable dgTable;
 
+        Epam_Main ePam_Main = new Epam_Main();
 
         public frmMain()
         {
@@ -34,12 +37,15 @@ namespace PreAlertManifestMaker
 
             loadConfigurations();
 
+            ePam_Main = new Epam_Main(originList, destinationList);
+
             setValidateTrue();
 
             txtSKUs.Text = updateSKUs();
 
-            dgTable = getManifestColums();
-
+            //dgTable = getManifestColumsEpam();
+            //var ePam_Main = new Epam_Main();
+            dgTable = ePam_Main.getTableColums();
             dataGridView1.DataSource = dgTable;
 
             //set version info
@@ -166,8 +172,8 @@ namespace PreAlertManifestMaker
 
         private void cmbAirline_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtMAWB.Text = generateMAWB(airlineList[cmbAirline.SelectedIndex, 2]);
-            txtFlight.Text = generateFlight(airlineList[cmbAirline.SelectedIndex, 1]);
+            txtMAWB.Text = ePam_Main.getMawbNo(airlineList[cmbAirline.SelectedIndex, 2]);
+            txtFlight.Text = ePam_Main.getFlightNo(airlineList[cmbAirline.SelectedIndex, 1]);
         }
 
         private void txtParcels_TextChanged(object sender, EventArgs e)

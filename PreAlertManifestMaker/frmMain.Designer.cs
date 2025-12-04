@@ -60,6 +60,8 @@ namespace PreAlertManifestMaker
             label11 = new System.Windows.Forms.Label();
             txtFiles = new System.Windows.Forms.TextBox();
             cbDR = new System.Windows.Forms.CheckBox();
+            cmbForm = new System.Windows.Forms.ComboBox();
+            label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -354,18 +356,38 @@ namespace PreAlertManifestMaker
             // cbDR
             // 
             cbDR.AutoSize = true;
-            cbDR.Location = new System.Drawing.Point(889, 71);
+            cbDR.Location = new System.Drawing.Point(1013, 71);
             cbDR.Name = "cbDR";
             cbDR.Size = new System.Drawing.Size(69, 19);
             cbDR.TabIndex = 37;
             cbDR.Text = "DR Only";
             cbDR.UseVisualStyleBackColor = true;
             // 
+            // cmbForm
+            // 
+            cmbForm.FormattingEnabled = true;
+            cmbForm.Location = new System.Drawing.Point(889, 71);
+            cmbForm.Name = "cmbForm";
+            cmbForm.Size = new System.Drawing.Size(53, 23);
+            cmbForm.TabIndex = 38;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new System.Drawing.Point(828, 75);
+            label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label12.Name = "label12";
+            label12.Size = new System.Drawing.Size(35, 15);
+            label12.TabIndex = 39;
+            label12.Text = "Form";
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1110, 479);
+            Controls.Add(label12);
+            Controls.Add(cmbForm);
             Controls.Add(cbDR);
             Controls.Add(label11);
             Controls.Add(txtFiles);
@@ -442,6 +464,8 @@ namespace PreAlertManifestMaker
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtFiles;
         private System.Windows.Forms.CheckBox cbDR;
+        private System.Windows.Forms.ComboBox cmbForm;
+        private System.Windows.Forms.Label label12;
     }
 }
 

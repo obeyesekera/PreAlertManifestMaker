@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileIO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,17 +16,43 @@ namespace PreAlertManifestMaker
         string[,] airlineList;
         string[,] destinationList;
         string[,] originList;
-        string[,] currencyList;
-        string[,] HSList;
+        //string[,] currencyList;
+        //string[,] HSList;
         string[,] row2List;
+        string[,] formList;
+
+        ConfigReader configReader = new ConfigReader();
+
+        private string[,] fillComboBox(ComboBox comboBox, string cfgFile, int cfgParam, int cfgPos) 
+        {
+            string[,] cfgList= configReader.readComboCfg(cfgFile, cfgParam);
+            for (int i = 0; i < cfgList.GetLength(0); i++)
+            {
+                comboBox.Items.Add(cfgList[i, cfgPos]);
+            }
+            comboBox.SelectedIndex = 0;
+            return cfgList;
+
+        }
 
 
-        
+        private void fillFormsComboBox(string cfgFile)
+        {
+            formList = configReader.readComboCfg(cfgFile, 1);
+
+            for (int i = 0; i < formList.GetLength(0); i++)
+            {
+                cmbForm.Items.Add(formList[i, 0]);
+            }
+
+            cmbForm.SelectedIndex = 0;
+        }
+
 
         private void fillClientComboBox(string cfgFile)
         {
-            clientList = readComboCfg(cfgFile, 2);
-
+            clientList = configReader.readComboCfg(cfgFile, 2);
+            
             for (int i = 0; i < clientList.GetLength(0); i++)
             {
                 cmbClient.Items.Add(clientList[i, 0]);
@@ -36,8 +63,8 @@ namespace PreAlertManifestMaker
 
         private void fillAirlineComboBox(string cfgFile)
         {
-            airlineList = readComboCfg(cfgFile, 3);
-
+            airlineList = configReader.readComboCfg(cfgFile, 3);
+            
             for (int i = 0; i < airlineList.GetLength(0); i++)
             {
                 cmbAirline.Items.Add(airlineList[i, 0]);
@@ -49,7 +76,7 @@ namespace PreAlertManifestMaker
 
         private void fillDestinationComboBox(string cfgFile)
         {
-            destinationList = readComboCfg(cfgFile, 6);
+            destinationList = configReader.readComboCfg(cfgFile, 6);
 
             for (int i = 0; i < destinationList.GetLength(0); i++)
             {
@@ -60,7 +87,7 @@ namespace PreAlertManifestMaker
         }
         private void fillOriginComboBox(string cfgFile)
         {
-            originList = readComboCfg(cfgFile, 6);
+            originList = configReader.readComboCfg(cfgFile, 6);
 
             for (int i = 0; i < originList.GetLength(0); i++)
             {
@@ -70,44 +97,17 @@ namespace PreAlertManifestMaker
             cmbOrigin.SelectedIndex = 0;
         }
 
-        private void loadHS(string cfgFile)
-        {
-            HSList = readComboCfg(cfgFile, 2);
-        }
+        
 
-        private void loadCurrency(string cfgFile)
-        {
-            currencyList = readComboCfg(cfgFile, 1);
-        }
+        //private void loadCurrency(string cfgFile)
+        //{
+        //    currencyList = configReader.readComboCfg(cfgFile, 1);
+        //}
 
         private void loadRow2(string cfgFile)
         {
-            row2List = readComboCfg(cfgFile, 1);
+            row2List = configReader.readComboCfg(cfgFile, 1);
         }
 
-
-
-        private string[,] readComboCfg(string cfgName, int cfgParam)
-        {
-
-            int parmCount = cfgParam;
-            string[] lineOfContents = File.ReadAllLines(cfgName);
-            string[,] cfgContents = new string[lineOfContents.Length, parmCount];
-            int i = 0;
-            foreach (var line in lineOfContents)
-            {
-                string[] parVals = line.Split(',');
-
-
-                for (int j = 0; j < parmCount; j++)
-                {
-                    cfgContents[i, j] = parVals[j].Trim();
-                }
-
-                i++;
-            }
-
-            return cfgContents;
-        }
     }
 }

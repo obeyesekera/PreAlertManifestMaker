@@ -27,6 +27,7 @@ namespace PreAlertManifestMaker
             btnGenerate.Enabled = false;
             btnSave.Enabled = false;
             txtSKUs.ReadOnly = true;
+            cmbForm.Enabled = false;
 
             dtpDeparture.CustomFormat = ConfigurationManager.AppSettings["dtFormat"]; //"dd/MM/yyyy hh:mm:ss tt";
             dtpArrival.CustomFormat = ConfigurationManager.AppSettings["dtFormat"]; //"dd/MM/yyyy hh:mm:ss tt";
@@ -42,13 +43,14 @@ namespace PreAlertManifestMaker
 
         private void loadConfigurations()
         {
+            fillFormsComboBox("form.cfg");
             fillClientComboBox("client.cfg");
             fillAirlineComboBox("airline.cfg");
             fillDestinationComboBox("destination.cfg");
             fillOriginComboBox("origin.cfg");
-            loadCurrency("currency.cfg");
-            loadHS("HS.cfg");
-            loadRow2("row2.cfg");
+            //loadCurrency("currency.cfg");
+            //loadHS("HS.cfg");
+            loadRow2("EpamRow2.cfg");
         }
 
         private void validateNumbers(KeyPressEventArgs e)
