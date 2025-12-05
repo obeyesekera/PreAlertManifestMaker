@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using FileIO;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +16,7 @@ namespace PreAlertManifestMaker
 {
     partial class frmMain
     {
+        ExcelGen excelGen = new ExcelGen();
 
         string consignmentNo = "";
         string SKUNo = "";
@@ -82,76 +84,45 @@ namespace PreAlertManifestMaker
                 );
         }
 
-        private void saveManifest(string fileName)
+
+        private void saveManifest()
         {
-            ExcelApp.Application manifestExcel = new ExcelApp.Application();
-            ExcelApp.Workbook manifestWorkbook = manifestExcel.Workbooks.Add(Type.Missing);
+            
+            btnSave.Enabled = false;
+            btnClear.Enabled = false;
+            dataGridView1.ReadOnly = true;
 
-            try
+            string fileName;
+
+
+            fileName = "ePAM_";
+
+
+            fileName += txtMAWB.Text + "_";
+            fileName += DateTime.Now.ToString("yyyyMMddHHmmss");
+            fileName += txtParcels.Text.Length > 0 ? ("_" + txtParcels.Text + "P") : "";
+            fileName += txtSKUs.Text.Length > 0 ? ("_" + txtSKUs.Text + "SKU") : "";
+
+
+            string[] messageArr = excelGen.saveEpam(fileName, dgTable);
+
+            if (messageArr[0] == "OK")
             {
-                manifestExcel.Visible = false;
-                manifestExcel.DisplayAlerts = false;
-
-                // For example, to set column A to Text format:
-                
-
-                ExcelApp.Worksheet manifestWorksheet = (ExcelApp.Worksheet)manifestWorkbook.ActiveSheet;
-                manifestWorksheet.Name = "ePAM Data";
-                //manifestWorksheet.Cells[1, 1] = txtFlight.Text;
-                manifestWorksheet.Cells.Font.Size = 11;
-
-                ExcelApp.Range columnHS = manifestWorksheet.Columns["AJ"];
-                columnHS.NumberFormat = "@";
-
-                for (int i = 1; i <= dgTable.Columns.Count; i++)
-                {
-                    manifestWorksheet.Cells[1, i] = dgTable.Columns[i - 1].ColumnName;
-                    manifestWorksheet.Cells[2, i] = row2List[i-1,0];
-                    manifestWorksheet.Cells.Font.Color = System.Drawing.Color.Black;
-                }
-
-                int worksheetRow = 2;
-
-                foreach (DataRow datarow in dgTable.Rows)
-                {
-                    worksheetRow += 1;
-
-                    //for (int i = 1; i <= dgTable.Columns.Count; i++)
-                    //{
-                    //    manifestWorksheet.Cells[worksheetRow, i] = datarow[i - 1].ToString();
-                    //}
-
-
-                    // Get data as an object array
-                    object[] values = datarow.ItemArray;
-
-                    // Get the number of columns
-                    int colCount = values.Length;
-
-                    // Define the target range for the row
-                    ExcelApp.Range targetRange = manifestWorksheet.Range[
-                        manifestWorksheet.Cells[worksheetRow, 1],
-                        manifestWorksheet.Cells[worksheetRow, colCount]
-                    ];
-
-                    // Assign the array to the range
-                    targetRange.Value2 = values;
-
-                }
-
-                manifestWorkbook.SaveAs(fileName);
-                manifestWorkbook.Close();
+                MessageBox.Show(messageArr[1] + " Saved !");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error: " + messageArr[1]);
             }
-            finally
-            {
-                manifestExcel?.Quit();
-                Thread.Sleep(5000);
-            }
+
+            btnSave.Enabled = true;
+            btnClear.Enabled = true;
+            dataGridView1.ReadOnly = false;
         }
+
+
+
+        
 
 
         

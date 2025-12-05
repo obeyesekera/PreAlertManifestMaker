@@ -62,28 +62,8 @@ namespace PreAlertManifestMaker
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            btnSave.Enabled = false;
-            btnClear.Enabled = false;
-            dataGridView1.ReadOnly = true;
-
-            string fileName;
-
-
-            fileName = "ePAM_";
-
-
-            fileName += txtMAWB.Text + "_";
-            fileName += DateTime.Now.ToString("yyyyMMddHHmmss");
-            fileName += txtParcels.Text.Length > 0 ? ("_" + txtParcels.Text + "P") : "";
-            fileName += txtSKUs.Text.Length > 0 ? ("_" + txtSKUs.Text + "SKU") : "";
-
-
-            saveManifest(fileName);
-            MessageBox.Show(fileName + " Saved !");
-
-            btnSave.Enabled = true;
-            btnClear.Enabled = true;
-            dataGridView1.ReadOnly = false;
+            saveManifest();
+            
         }
 
 
