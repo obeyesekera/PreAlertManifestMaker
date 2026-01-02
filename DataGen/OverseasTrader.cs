@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileIO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,20 +7,29 @@ using System.Threading.Tasks;
 
 namespace DataGen
 {
-    public class Consignor
+    public class OverseasTrader
     {
         RandomGen randomGen = new RandomGen();
         NameGen nameGen = new NameGen();
         AddressGen addressGen = new AddressGen();
-        
-        string[,] originList;
+        ConfigReader configReader = new ConfigReader();
 
-        public Consignor(string[,] nList) 
+        string[,] originList;
+        string[,] OrgTypesList;
+
+
+        public OverseasTrader(string[,] nList) 
         {
             originList = nList;
+            loadOrganizationTypes("OrganizationTypes.cfg");
         }
 
-        private string rndConsignorType()
+        private void loadOrganizationTypes(string cfgFile)
+        {
+            OrgTypesList = configReader.readComboCfg(cfgFile, 1);
+        }
+
+        private string rndTraderType()
         {
             string[] consTypes = { "(PVT) Ltd", "Industries" };
 
@@ -28,7 +38,7 @@ namespace DataGen
             return consTypes[index];
         }
 
-        public string[] rndConsignorCountry()
+        public string[] rndTraderCountry()
         {
             Random r = new Random();
             int i = r.Next(originList.GetLength(0) - 1);
@@ -36,16 +46,16 @@ namespace DataGen
             return nCountry;
         }
 
-        public string rndConsignorName()
+        public string rndTraderName()
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(nameGen.generateName(6));
             stringBuilder.Append(" ");
-            stringBuilder.Append(rndConsignorType());
+            stringBuilder.Append(rndTraderType());
             return stringBuilder.ToString();
         }
 
-        public string rndConsignorAddress1()
+        public string rndTraderAddress1()
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(randomGen.randomNumber(10, 99));
@@ -56,14 +66,19 @@ namespace DataGen
             return stringBuilder.ToString();
         }
 
-        public string rndConsignorAddress2()
+        public string rndTraderAddress2()
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(nameGen.generateName(7));
             return stringBuilder.ToString();
         }
 
-        
+        public string rndOrganizationType() 
+        {
+            Random r = new Random();
+            string nOrgType = OrgTypesList[r.Next(OrgTypesList.Length), 0];
+            return nOrgType;
+        }
 
 
     }

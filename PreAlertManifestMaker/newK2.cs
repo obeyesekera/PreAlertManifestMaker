@@ -1,165 +1,93 @@
-﻿using System;
+﻿using DataGen;
+using FormK2;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ExcelApp = Microsoft.Office.Interop.Excel;
+//using ExcelApp = Microsoft.Office.Interop.Excel;
 
 namespace PreAlertManifestMaker
 {
     partial class frmMain
     {
+        //K2_Main k2_Main = new K2_Main();
 
-        private System.Data.DataTable getManifestColumsK2Main()
+        private void createK2(int parcelCount, int itemsPP)
         {
-            System.Data.DataTable table = new System.Data.DataTable();
+            string[] nMainShipment = {
+                k2_Main.getFormLinkageID(airlineList[cmbAirline.SelectedIndex, 2]),    //Form Linkage ID *
+                "AIR TRANSPORT",        //Transport Mode *
+                "FULL SHIPMENT",        //Shipment Type *
+                "0001 - NORMAL EXPORT", //Declaration Type *
+                "W20",                  //Customs Submission Station *
+                "KLIAS",                //Terminal Operator ID *
+                dtpDeparture.Text,      //Departure Date *
+                originList[cmbOrigin.SelectedIndex,0]+originList[cmbOrigin.SelectedIndex,2],                        //Origin Port *
+                destinationList[cmbDestination.SelectedIndex,0]+destinationList[cmbDestination.SelectedIndex,2],    //Destination Port *
+                originList[cmbVia.SelectedIndex,0]+destinationList[cmbVia.SelectedIndex,2]                          //Via Port
+            };
 
-            table.Columns.Add("Client Name *", typeof(string));
-            table.Columns.Add("MAWB No. *", typeof(string));
-            table.Columns.Add("Flight No. *", typeof(string));
-            table.Columns.Add("Origin Port *", typeof(string));
-            table.Columns.Add("Destination Port *", typeof(string));
-            table.Columns.Add("STD *", typeof(string));
-            table.Columns.Add("STA *", typeof(string));
 
-            table.Columns.Add("Parcel No. *", typeof(string));
-            table.Columns.Add("Parcel Bag ID", typeof(string));
-            table.Columns.Add("Parcel Origin", typeof(string));
-            table.Columns.Add("Parcel Destination", typeof(string));
-            table.Columns.Add("Parcel Currency", typeof(string));
-            table.Columns.Add("Parcel Total Freight Charges *", typeof(string));
-            table.Columns.Add("Parcel Total Insurance Charges *", typeof(string));
-            table.Columns.Add("Parcel Total Gross Weight *", typeof(string));
-            table.Columns.Add("LVG Registration No.", typeof(string));
+            string[] nMainMawb = {
+                clientList[cmbClient.SelectedIndex,0],  //Client Name *
+                txtFlight.Text,                         //"Flight No. (AIR TRANSPORT ONLY)"
+                "",                                     //"Voyage No (SEA TRANSPORT ONLY)"
+                txtMAWB.Text,                           //"MAWB No (AIR TRANSPORT ONLY)"
+                "",                                     //"HAWB No(AIR TRANSPORT ONLY)"
+                "",                                     //"Booking Ref No (SEA TRANSPORT ONLY)"
+                "",                                     //"Ship Call Number (SEA TRANSPORT ONLY)"
+                "",                                     //"Vessel ID (SEA TRANSPORT ONLY)"
+                "",                                     //"Vessel Name (SEA TRANSPORT ONLY)"
+                "",                                     //"Vehicle No. 1 (ROAD TRANSPORT ONLY)"
+                "",                                     //"Vehicle No. 2 (ROAD TRANSPORT ONLY)"
+                ""                                      //"Shipment Details Invoice No.(ROAD TRANSPORT ONLY)"
+            };
 
-            table.Columns.Add("Consignor Name *", typeof(string));
-            table.Columns.Add("Consignor Address 1 *", typeof(string));
-            table.Columns.Add("Consignor Address 2", typeof(string));
-            table.Columns.Add("Consignor Postcode ", typeof(string));
-            table.Columns.Add("Consignor City ", typeof(string));
-            table.Columns.Add("Consignor State ", typeof(string));
-            table.Columns.Add("Consignor Country *", typeof(string));
+            string[] nMarketingLine = k2_Main.getMarketingLine();
 
-            table.Columns.Add("Consignee Name *", typeof(string));
-            table.Columns.Add("Consignee Address 1 *", typeof(string));
-            table.Columns.Add("Consignee Address 2", typeof(string));
-            table.Columns.Add("Consignee Postcode", typeof(string));
-            table.Columns.Add("Consignee City", typeof(string));
-            table.Columns.Add("Consignee State", typeof(string));
-            table.Columns.Add("Consignee Country *", typeof(string));
+            string[] nMainParcel = k2_Main.getMainParcel();
 
-            table.Columns.Add("Consignment Note *", typeof(string));
-            table.Columns.Add("Goods SKU *", typeof(string));
-            table.Columns.Add("Description of Goods *", typeof(string));
-            table.Columns.Add("Quantity *", typeof(string));
-            table.Columns.Add("Item Value Per Unit *", typeof(string));
-            table.Columns.Add("HS Code *", typeof(string));
+            string[] nMainInvoice = k2_Main.getMainInvoice();
 
-            return table;
+            string[] nMainCharges = k2_Main.getMainCharges();
+
+            string[] nMainConsignor = k2_Main.getMainConsignor();
+
+            string[] nMainConsignee = k2_Main.getMainConsignee();
+
+            string[] nMainForwardingAgent = k2_Main.getMainForwardingAgent();
+
+            string[] nMainShippingAgent = k2_Main.getMainShippingAgent();
+
+            string[] nMainExcemtion = {
+
+            };
+
+            string[] nMainClause = {
+
+            };
+
+
+
+            string parcelNo = "";
+
+            for (int i = 0; i < parcelCount; i++)
+            {
+                parcelNo = addK2Parcels(itemsPP, parcelNo, nMainShipment, nMainMawb);
+            }
         }
 
-        private void saveManifestK2(string fileName)
+        private string addK2Parcels(int itemsPP, string parcelNo, string[] nMainShipment, string[] nMainParcel) 
         {
-            ExcelApp.Application manifestExcel = new ExcelApp.Application();
-            ExcelApp.Workbook manifestWorkbook = manifestExcel.Workbooks.Add(Type.Missing);
-
-            try
-            {
-                manifestExcel.Visible = false;
-                manifestExcel.DisplayAlerts = false;
-
-                // For example, to set column A to Text format:
-                ExcelApp.Worksheet k2MainWorksheet = (ExcelApp.Worksheet)manifestWorkbook.ActiveSheet;
-                k2MainWorksheet.Name = "K2_Main";
-                k2MainWorksheet.Cells.Font.Size = 11;
-
-                ExcelApp.Range columnHS = k2MainWorksheet.Columns["AJ"];
-                columnHS.NumberFormat = "@";
-
-                for (int i = 1; i <= dgTable.Columns.Count; i++)
-                {
-                    k2MainWorksheet.Cells[1, i] = dgTable.Columns[i - 1].ColumnName;
-                    k2MainWorksheet.Cells[2, i] = row2List[i - 1, 0];
-                    k2MainWorksheet.Cells.Font.Color = System.Drawing.Color.Black;
-                }
-
-                int worksheetRow = 2;
-
-                foreach (DataRow datarow in dgTable.Rows)
-                {
-                    worksheetRow += 1;
-
-                    // Get data as an object array
-                    object[] values = datarow.ItemArray;
-
-                    // Get the number of columns
-                    int colCount = values.Length;
-
-                    // Define the target range for the row
-                    ExcelApp.Range targetRange = k2MainWorksheet.Range[
-                        k2MainWorksheet.Cells[worksheetRow, 1],
-                        k2MainWorksheet.Cells[worksheetRow, colCount]
-                    ];
-
-                    // Assign the array to the range
-                    targetRange.Value2 = values;
-
-                }
-
-                // For example, to set column A to Text format: ______________________________________________
-                ExcelApp.Worksheet k2ItemsWorksheet = (ExcelApp.Worksheet)manifestWorkbook.Sheets.Add(After: manifestWorkbook.Sheets[manifestWorkbook.Sheets.Count]);
-                k2ItemsWorksheet.Name = "K2_Items";
-                k2ItemsWorksheet.Cells.Font.Size = 11;
-
-                ExcelApp.Range columnHS2 = k2ItemsWorksheet.Columns["AJ"];
-                columnHS2.NumberFormat = "@";
-
-                for (int i = 1; i <= dgTable.Columns.Count; i++)
-                {
-                    k2ItemsWorksheet.Cells[1, i] = dgTable.Columns[i - 1].ColumnName;
-                    k2ItemsWorksheet.Cells[2, i] = row2List[i - 1, 0];
-                    k2ItemsWorksheet.Cells.Font.Color = System.Drawing.Color.Black;
-                }
-
-                int worksheetRow2 = 2;
-
-                foreach (DataRow datarow in dgTable.Rows)
-                {
-                    worksheetRow2 += 1;
-
-                    // Get data as an object array
-                    object[] values = datarow.ItemArray;
-
-                    // Get the number of columns
-                    int colCount = values.Length;
-
-                    // Define the target range for the row
-                    ExcelApp.Range targetRange = k2ItemsWorksheet.Range[
-                        k2ItemsWorksheet.Cells[worksheetRow2, 1],
-                        k2ItemsWorksheet.Cells[worksheetRow2, colCount]
-                    ];
-
-                    // Assign the array to the range
-                    targetRange.Value2 = values;
-
-                }
-
-                manifestWorkbook.SaveAs(fileName);
-                manifestWorkbook.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                manifestExcel?.Quit();
-                Thread.Sleep(5000);
-            }
+            return "";
         }
+
+
 
     }
 }

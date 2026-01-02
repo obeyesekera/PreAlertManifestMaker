@@ -14,9 +14,13 @@ namespace PreAlertManifestMaker
 {
     public partial class frmMain : Form
     {
-        DataTable dgTable;
+        DataTable dgTable1;
+        DataTable dgTable2;
+        DataTable dgTable3;
+        DataTable dgTable4;
 
         Epam_Main ePam_Main = new Epam_Main();
+        K2_Main k2_Main = new K2_Main();
 
         public frmMain()
         {
@@ -43,10 +47,9 @@ namespace PreAlertManifestMaker
 
             txtSKUs.Text = updateSKUs();
 
-            //dgTable = getManifestColumsEpam();
-            //var ePam_Main = new Epam_Main();
-            dgTable = ePam_Main.getTableColums();
-            dataGridView1.DataSource = dgTable;
+            //dgTable = ePam_Main.getTableColums();
+            //dataGridView1.DataSource = dgTable;
+            setForm();
 
             //set version info
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
@@ -57,13 +60,22 @@ namespace PreAlertManifestMaker
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            generateRaws();
+            switch
+                (cmbForm.SelectedIndex)
+            {
+                case 0:
+                    generateEpamRaws();
+                    break;
+                case 1:
+                    generateK2Raws();
+                    break;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            saveManifest();
-            
+            saveEpam();
+
         }
 
 
@@ -194,6 +206,11 @@ namespace PreAlertManifestMaker
         private void txtFiles_KeyPress(object sender, KeyPressEventArgs e)
         {
             validateNumbers(e);
+        }
+
+        private void cmbForm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            setForm();
         }
     }
 }

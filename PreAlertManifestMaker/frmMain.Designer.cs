@@ -62,19 +62,37 @@ namespace PreAlertManifestMaker
             cbDR = new System.Windows.Forms.CheckBox();
             cmbForm = new System.Windows.Forms.ComboBox();
             label12 = new System.Windows.Forms.Label();
+            tabCon = new System.Windows.Forms.TabControl();
+            tabPage1 = new System.Windows.Forms.TabPage();
+            tabPage2 = new System.Windows.Forms.TabPage();
+            dataGridView2 = new System.Windows.Forms.DataGridView();
+            tabPage3 = new System.Windows.Forms.TabPage();
+            dataGridView3 = new System.Windows.Forms.DataGridView();
+            tabPage4 = new System.Windows.Forms.TabPage();
+            dataGridView4 = new System.Windows.Forms.DataGridView();
+            cmbVia = new System.Windows.Forms.ComboBox();
+            lblVia = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tabCon.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
+            tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new System.Drawing.Point(8, 110);
+            dataGridView1.Location = new System.Drawing.Point(5, 5);
             dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new System.Drawing.Size(946, 362);
+            dataGridView1.Size = new System.Drawing.Size(938, 320);
             dataGridView1.TabIndex = 0;
             dataGridView1.RowsAdded += dataGridView1_RowsAdded;
             dataGridView1.RowsRemoved += dataGridView1_RowsRemoved;
@@ -370,6 +388,7 @@ namespace PreAlertManifestMaker
             cmbForm.Name = "cmbForm";
             cmbForm.Size = new System.Drawing.Size(53, 23);
             cmbForm.TabIndex = 38;
+            cmbForm.SelectedIndexChanged += cmbForm_SelectedIndexChanged;
             // 
             // label12
             // 
@@ -381,11 +400,123 @@ namespace PreAlertManifestMaker
             label12.TabIndex = 39;
             label12.Text = "Form";
             // 
+            // tabCon
+            // 
+            tabCon.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tabCon.Controls.Add(tabPage1);
+            tabCon.Controls.Add(tabPage2);
+            tabCon.Controls.Add(tabPage3);
+            tabCon.Controls.Add(tabPage4);
+            tabCon.Location = new System.Drawing.Point(10, 109);
+            tabCon.Name = "tabCon";
+            tabCon.SelectedIndex = 0;
+            tabCon.Size = new System.Drawing.Size(956, 358);
+            tabCon.TabIndex = 40;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(dataGridView1);
+            tabPage1.Location = new System.Drawing.Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            tabPage1.Size = new System.Drawing.Size(948, 330);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "tabPage1";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(dataGridView2);
+            tabPage2.Location = new System.Drawing.Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            tabPage2.Size = new System.Drawing.Size(948, 330);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "tabPage2";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new System.Drawing.Point(5, 5);
+            dataGridView2.Margin = new System.Windows.Forms.Padding(2);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 62;
+            dataGridView2.RowTemplate.Height = 33;
+            dataGridView2.Size = new System.Drawing.Size(938, 320);
+            dataGridView2.TabIndex = 1;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Controls.Add(dataGridView3);
+            tabPage3.Location = new System.Drawing.Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new System.Drawing.Size(948, 330);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "tabPage3";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView3
+            // 
+            dataGridView3.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView3.Location = new System.Drawing.Point(5, 5);
+            dataGridView3.Margin = new System.Windows.Forms.Padding(2);
+            dataGridView3.Name = "dataGridView3";
+            dataGridView3.RowHeadersWidth = 62;
+            dataGridView3.RowTemplate.Height = 33;
+            dataGridView3.Size = new System.Drawing.Size(938, 320);
+            dataGridView3.TabIndex = 1;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(dataGridView4);
+            tabPage4.Location = new System.Drawing.Point(4, 24);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new System.Drawing.Size(948, 330);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "tabPage4";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView4
+            // 
+            dataGridView4.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView4.Location = new System.Drawing.Point(5, 5);
+            dataGridView4.Margin = new System.Windows.Forms.Padding(2);
+            dataGridView4.Name = "dataGridView4";
+            dataGridView4.RowHeadersWidth = 62;
+            dataGridView4.RowTemplate.Height = 33;
+            dataGridView4.Size = new System.Drawing.Size(938, 320);
+            dataGridView4.TabIndex = 1;
+            // 
+            // cmbVia
+            // 
+            cmbVia.FormattingEnabled = true;
+            cmbVia.Location = new System.Drawing.Point(420, 69);
+            cmbVia.Name = "cmbVia";
+            cmbVia.Size = new System.Drawing.Size(106, 23);
+            cmbVia.TabIndex = 41;
+            // 
+            // lblVia
+            // 
+            lblVia.AutoSize = true;
+            lblVia.Location = new System.Drawing.Point(350, 72);
+            lblVia.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            lblVia.Name = "lblVia";
+            lblVia.Size = new System.Drawing.Size(23, 15);
+            lblVia.TabIndex = 42;
+            lblVia.Text = "Via";
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1110, 479);
+            Controls.Add(lblVia);
+            Controls.Add(cmbVia);
+            Controls.Add(tabCon);
             Controls.Add(label12);
             Controls.Add(cmbForm);
             Controls.Add(cbDR);
@@ -417,7 +548,6 @@ namespace PreAlertManifestMaker
             Controls.Add(txtFlight);
             Controls.Add(lblName);
             Controls.Add(btnGenerate);
-            Controls.Add(dataGridView1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             Margin = new System.Windows.Forms.Padding(2);
@@ -428,6 +558,14 @@ namespace PreAlertManifestMaker
             FormClosing += frmMain_FormClosing;
             Load += frmMain_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            tabCon.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
+            tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -466,6 +604,16 @@ namespace PreAlertManifestMaker
         private System.Windows.Forms.CheckBox cbDR;
         private System.Windows.Forms.ComboBox cmbForm;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabControl tabCon;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.ComboBox cmbVia;
+        private System.Windows.Forms.Label lblVia;
     }
 }
 

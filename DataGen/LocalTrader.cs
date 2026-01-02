@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataGen
 {
-    public class Consignee
+    public class LocalTrader
     {
         RandomGen randomGen = new RandomGen();
         NameGen nameGen = new NameGen();
@@ -15,13 +15,13 @@ namespace DataGen
 
         string[,] destinationList;
 
-        public Consignee(string[,] nList)
+        public LocalTrader(string[,] nList)
         {
             destinationList = nList;
         }
 
 
-        private string rndConsigneeType()
+        private string rndTraderType()
         {
             string[] consTypes = { "Sdn Bhd", "Industries", "Technologies" };
 
@@ -30,7 +30,7 @@ namespace DataGen
             return consTypes[index];
         }
 
-        public string[] rndConsigneeCountry()
+        public string[] rndTraderCountry()
         {
             Random r = new Random();
             int i = r.Next(destinationList.GetLength(0) - 1);
@@ -38,16 +38,16 @@ namespace DataGen
             return nCountry;
         }
 
-        public string rndConsigneeName()
+        public string rndTraderName()
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(nameGen.generateName(6));
             stringBuilder.Append(" ");
-            stringBuilder.Append(rndConsigneeType());
+            stringBuilder.Append(rndTraderType());
             return stringBuilder.ToString();
         }
 
-        public string rndConsigneeAddress1()
+        public string rndTraderAddress1()
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(randomGen.randomNumber(10, 99));
@@ -56,7 +56,7 @@ namespace DataGen
             return stringBuilder.ToString();
         }
 
-        public string rndConsigneeAddress2()
+        public string rndTraderAddress2()
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(nameGen.generateName(5));

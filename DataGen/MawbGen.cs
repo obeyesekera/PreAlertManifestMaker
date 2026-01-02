@@ -29,5 +29,17 @@ namespace DataGen
             stringBuilder.Append(randomGen.randomNumber(100, 999)); //3 dgit serial
             return stringBuilder.ToString();
         }
+
+        public string generateFormLinkageID(string airlineCode) 
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(airlineCode);
+            stringBuilder.Append(randomGen.randomNumber(10000000, 99999999)); //8 dgit serial
+            stringBuilder.Append("S");
+            return stringBuilder.ToString();
+        }
+
+
+
     }
 }

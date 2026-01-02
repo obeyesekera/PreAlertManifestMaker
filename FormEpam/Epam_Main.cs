@@ -11,8 +11,8 @@ namespace FormEpam
         MawbGen mawbGen = new MawbGen();
         ParcelGen parcelGen = new ParcelGen();
         AddressGen addressGen = new AddressGen();
-        Consignor consignor;// = new Consigner(originList);
-        Consignee consignee;// = new Consignee();
+        OverseasTrader overseasTrader;// = new Consigner(originList);
+        LocalTrader localTrader;// = new Consignee();
         Consignment consignment;// = new Consignment();
         
         public Epam_Main()
@@ -23,8 +23,8 @@ namespace FormEpam
 
         public Epam_Main(string[,] originList, string[,] destinationList) 
         {
-            consignor = new Consignor(originList);
-            consignee = new Consignee(destinationList);
+            overseasTrader = new OverseasTrader(originList);
+            localTrader = new LocalTrader(destinationList);
             consignment = new Consignment();
         }
 
@@ -42,25 +42,7 @@ namespace FormEpam
             return flightNo;
         }
 
-        public DataTable getTableColums()
-        {
-            var configReader = new ConfigReader();
-
-            string cfgFile = "EpamRow1.cfg"; // file path
-            int paramCount = 1; // parameter count
-
-            string[,] cfgContents = configReader.readComboCfg(cfgFile, paramCount);
-
-            DataTable table = new DataTable();
-
-            // Read contents
-            for (int i = 0; i < cfgContents.GetLength(0); i++)
-            {
-                table.Columns.Add(cfgContents[i, 0], typeof(string));
-            }
-
-            return table;
-        }
+        
 
         public string getParcelNo(string parcelPrefix) 
         { 
@@ -87,13 +69,13 @@ namespace FormEpam
             return nParcel;
         }
 
-        public string[] addConsignor()
+        public string[] addEpamConsignor()
         {
-            string[] nCountry = consignor.rndConsignorCountry();
+            string[] nCountry = overseasTrader.rndTraderCountry();
             string[] nConsignor = {
-                consignor.rndConsignorName(), //"Consignor Name *", 
-                consignor.rndConsignorAddress1(), //"Consignor Address 1 *",
-                consignor.rndConsignorAddress2(), //"Consignor Address 2",
+                overseasTrader.rndTraderName(), //"Consignor Name *", 
+                overseasTrader.rndTraderAddress1(), //"Consignor Address 1 *",
+                overseasTrader.rndTraderAddress2(), //"Consignor Address 2",
                 addressGen.rndPostalCode(), //"Consignor Postcode ",
                 nCountry[1], //"Consignor City ",
                 nCountry[2], //"Consignor State ",
@@ -103,13 +85,13 @@ namespace FormEpam
             return nConsignor;
         }
 
-        public string[] addConsignee()
+        public string[] addEpamConsignee()
         {
-            string[] nCountry = consignee.rndConsigneeCountry();
+            string[] nCountry = localTrader.rndTraderCountry();
             string[] nConsignee = {
-                consignee.rndConsigneeName(), //"Consignee Name *",
-                consignee.rndConsigneeAddress1(), //"Consignee Address 1 *",
-                consignee.rndConsigneeAddress2(), //"Consignee Address 2",
+                localTrader.rndTraderName(), //"Consignee Name *",
+                localTrader.rndTraderAddress1(), //"Consignee Address 1 *",
+                localTrader.rndTraderAddress2(), //"Consignee Address 2",
                 addressGen.rndPostalCode(), //"Consignee Postcode",
                 nCountry[1], //"Consignee City",
                 nCountry[2], //"Consignee State",

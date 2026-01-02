@@ -16,6 +16,7 @@ namespace PreAlertManifestMaker
         string[,] airlineList;
         string[,] destinationList;
         string[,] originList;
+        string[,] viaList;
         //string[,] currencyList;
         //string[,] HSList;
         string[,] row2List;
@@ -23,17 +24,7 @@ namespace PreAlertManifestMaker
 
         ConfigReader configReader = new ConfigReader();
 
-        private string[,] fillComboBox(ComboBox comboBox, string cfgFile, int cfgParam, int cfgPos) 
-        {
-            string[,] cfgList= configReader.readComboCfg(cfgFile, cfgParam);
-            for (int i = 0; i < cfgList.GetLength(0); i++)
-            {
-                comboBox.Items.Add(cfgList[i, cfgPos]);
-            }
-            comboBox.SelectedIndex = 0;
-            return cfgList;
-
-        }
+        
 
 
         private void fillFormsComboBox(string cfgFile)
@@ -78,6 +69,8 @@ namespace PreAlertManifestMaker
         {
             destinationList = configReader.readComboCfg(cfgFile, 6);
 
+            cmbDestination.Items.Clear();
+
             for (int i = 0; i < destinationList.GetLength(0); i++)
             {
                 cmbDestination.Items.Add(destinationList[i, 3]);
@@ -89,6 +82,8 @@ namespace PreAlertManifestMaker
         {
             originList = configReader.readComboCfg(cfgFile, 6);
 
+            cmbOrigin.Items.Clear();
+
             for (int i = 0; i < originList.GetLength(0); i++)
             {
                 cmbOrigin.Items.Add(originList[i, 3]);
@@ -97,7 +92,21 @@ namespace PreAlertManifestMaker
             cmbOrigin.SelectedIndex = 0;
         }
 
-        
+        private void fillViaComboBox(string cfgFile)
+        {
+            viaList = configReader.readComboCfg(cfgFile, 6);
+
+            cmbVia.Items.Clear();
+
+            for (int i = 0; i < viaList.GetLength(0); i++)
+            {
+                cmbVia.Items.Add(viaList[i, 3]);
+            }
+
+            cmbVia.SelectedIndex = 0;
+        }
+
+
 
         //private void loadCurrency(string cfgFile)
         //{
